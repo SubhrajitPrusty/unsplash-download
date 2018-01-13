@@ -3,12 +3,14 @@ Simple script to download images from unsplash.com
 
 ## Dependencies
 
-This program uses [Python3](), [Geckodriver]() and [wget]().
-Add your `geckodriver` in $PATH.
+This program uses [Python 3](https://www.python.org/download/releases/3.0/), [geckodriver](https://github.com/mozilla/geckodriver/releases) and [wget](https://www.gnu.org/software/wget/faq.html#download).
 
-### Install required modules
+Add `geckodriver` to $PATH.
 
-It is recommended to create a virtual environment first `virtualenv venv`.
+### Install requirements
+
+It is recommended to create a virtual environment first
+`virtualenv venv`.
 
 ```
 $ pip3 install -r requirements.txt
