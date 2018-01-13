@@ -8,7 +8,7 @@ Add your `geckodriver` in $PATH.
 
 ### Install required modules
 
-It is recommended to create a virtual environment first.
+It is recommended to create a virtual environment first `virtualenv venv`.
 
 ```
 $ pip3 install -r requirements.txt
