@@ -21,4 +21,4 @@ with Browser("firefox",headless=True) as browser:
 
 files = os.listdir("photos")
 for f in files:
-	f.rename(f,f+"jpg")
+	os.rename(f,f+"jpg")
