@@ -15,7 +15,7 @@ with Browser("firefox",headless=True) as browser:
 	images = [x.split("?")[0] for x in allImages if "images.unsplash.com" in x]
 	# wget the files
 	for x in images:
-		os.system("wget --no-check-certificate -c -P photos/ {}".format(tag, x))
+		os.system("wget --no-check-certificate -c -P photos/ {}".format(x))
 
 # the files are without any extension
 
