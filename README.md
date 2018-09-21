@@ -18,6 +18,8 @@ $ pip3 install -r requirements.txt
 
 ## Running
 
+[The files are mostly uncompressed and very large. It may take a while to download.]
+
 ```
 $ python3 unsplash.py
 ```
