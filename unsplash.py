@@ -7,6 +7,10 @@ import os
 
 if len(sys.argv) > 1:
 	tag = sys.argv[1]
+	if len(sys.argv) > 2:
+		limit = int(sys.argv[2])
+	else:
+		limit = 0
 	link = "https://unsplash.com/search/photos/"+tag
 
 	print("Downloading images for {}...".format(tag))
@@ -15,7 +19,10 @@ if len(sys.argv) > 1:
 		browser.visit(link)
 		html = browser.html
 		soup = BeautifulSoup(html, "html.parser")
-		allImages = [x.get("src") for x in soup.findAll("img")]
+		if limit:
+			allImages = [x.get("src") for x in soup.findAll("img")][:limit]
+		else
+			allImages = [x.get("src") for x in soup.findAll("img")]
 		images = [x.split("?")[0] for x in allImages if "images.unsplash.com" in x]
 		# wget the files
 		for x in images:
