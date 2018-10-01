@@ -2,7 +2,7 @@
 import sys
 
 from bs4 import BeautifulSoup
-from splinter import Browser
+import requests
 import os
 
 if len(sys.argv) > 1:
@@ -11,9 +11,8 @@ if len(sys.argv) > 1:
 
 	print("Downloading images for {}...".format(tag))
 
-	with Browser("firefox",headless=True) as browser:
-		browser.visit(link)
-		html = browser.html
+	with requests.get(link) as r:
+		html = r.content
 		soup = BeautifulSoup(html, "html.parser")
 		allImages = [x.get("src") for x in soup.findAll("img")]
 		images = [x.split("?")[0] for x in allImages if "images.unsplash.com" in x]
