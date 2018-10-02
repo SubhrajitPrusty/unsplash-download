@@ -24,11 +24,11 @@ if len(sys.argv) > 1:
 	images = [x.split("?")[0] for x in allImages if "images.unsplash.com" in x and "profile" not in x]
 	# wget the files
 	for x in images:
-		os.system("wget -q --no-check-certificate -c -P photos/{} {}".format(tag, x))
+		os.system("wget -q --no-check-certificate -c -P photos/{} {}".format(tag.replace(" ","-"), x))
 
 	# the files are without any extension
 
-	os.chdir("photos/"+tag.split()[0])
+	os.chdir("photos/"+tag)
 	files = os.listdir(".")
 	for f in files:
 		if not f.endswith(".jpg"):
