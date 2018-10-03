@@ -1,37 +1,42 @@
 # script to download photos from unsplash
-import sys
 
+import sys
 from bs4 import BeautifulSoup
 import requests
 import os
+import click
 
-if len(sys.argv) > 1:
-	tag = sys.argv[1]
-	if len(sys.argv) > 2:
-		limit = int(sys.argv[2])
-	else:
-		limit = 0
+
+@click.command()
+@click.argument("tag", type=click.STRING)
+@click.option("--limit", default=0, help="limit the number of photos to get")
+def cli(tag, limit):
+	tag = tag.replace(" ", "-")  # unsplash preferred
 	link = "https://unsplash.com/search/photos/"+tag
 
 	print("Downloading images for {}...".format(tag))
-	r=requests.get(link)
-	html=r.content
-	soup = BeautifulSoup(html, "html.parser")
-	if limit:
-		allImages = [x.get("src") for x in soup.findAll("img")][:limit]
-	else:
-		allImages = [x.get("src") for x in soup.findAll("img")]
-	images = [x.split("?")[0] for x in allImages if "images.unsplash.com" in x and "profile" not in x]
+	r = requests.get(link)
+	soup = BeautifulSoup(r.content, "html.parser")
+	allImages = [x.get("src") for x in soup.findAll("img")]
+	images = [x.split(
+		"?")[0] for x in allImages if "images.unsplash.com" in x and "profile" not in x and "avatar" not in x]
+
+	print("Found {} images".format(len(images)))
+
+	if limit !=0 and limit < len(images):
+		images = images[:limit]
+	
 	# wget the files
 	for x in images:
-		os.system("wget -q --no-check-certificate -c -P photos/{} {}".format(tag.replace(" ","-"), x))
+		os.system(
+			"wget -q --no-check-certificate -c -P photos/{} {}".format(tag, x))
+		print("Downloaded {}".format(x))
 
 	# the files are without any extension
-
 	os.chdir("photos/"+tag)
 	files = os.listdir(".")
 	for f in files:
 		if not f.endswith(".jpg"):
-			os.rename(f,f+".jpg")
-else:
-	print("Enter tag.\nUsage: python unsplash.py tag\n")
+			os.rename(f, f+".jpg")
+
+	print("\nFiles downloaded into photos/{}".format(tag))
