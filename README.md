@@ -4,7 +4,7 @@ Simple script to download images from unsplash.com
 ## Dependencies
 ![](https://img.shields.io/hackage-deps/v/lens.svg)
 This program uses 
-  * [https://img.shields.io/pypi/pyversions/Django.svg]()
+  * ![](https://img.shields.io/pypi/pyversions/Django.svg)
   * [geckodriver](https://github.com/mozilla/geckodriver/releases)
   * [wget](https://www.gnu.org/software/wget/faq.html#download)
 
