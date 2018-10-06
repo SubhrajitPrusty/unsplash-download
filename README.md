@@ -2,19 +2,18 @@
 Simple script to download images from unsplash.com
 
 ## Dependencies
-![](https://img.shields.io/hackage-deps/v/lens.svg)
+
+![](https://img.shields.io/hackage-deps/v/lens.svg?style=for-the-badge)
+
 This program uses 
-  * ![](https://img.shields.io/pypi/pyversions/Django.svg)
+  * ![](https://img.shields.io/pypi/pyversions/Django.svg?style=for-the-badge)
   * [wget](https://www.gnu.org/software/wget/faq.html#download)
 
 
 ### Install requirements
 
-It is recommended to create a virtual environment first
-`virtualenv venv`.
-
 ```
-$ pip3 install -r requirements.txt
+$ pip3 install --editable .
 ```
 
 ## Running
@@ -22,5 +21,11 @@ $ pip3 install -r requirements.txt
 [The files are mostly uncompressed and very large. It may take a while to download.]
 
 ```
-$ python3 unsplash.py
+
+Usage: unsplash-download [OPTIONS] TAG
+
+Options:
+  --limit INTEGER  limit the number of photos to get
+  --help           Show this message and exit.
+
 ```
